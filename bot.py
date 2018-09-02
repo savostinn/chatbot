@@ -28,7 +28,7 @@ def webhook():
     bot.set_webhook(url="https://chatbot0939.herokuapp.com/"+config.token)
     return "!", 200
 
-@bot.message_handler(content_types=["text"])
+@bot.message_handler(func=lambda message: True, content_types=["text"])
 def default_test(message):
     keyboard = types.ReplyKeyboardMarkup()
     url_button = types.KeyboardButton(text="Перейти на Яндекс")
