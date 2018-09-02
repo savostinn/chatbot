@@ -42,6 +42,7 @@ def dialog(message):
 	    button_phone = types.KeyboardButton(text=a[i])
 	    keyboard.add(button_phone)
 	    bot.send_message(message.chat.id, b[i], reply_markup=keyboard)
+	    i+=1
 
 server.run(host="0.0.0.0", port=os.environ.get('PORT', 5000))
 
