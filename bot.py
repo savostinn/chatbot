@@ -10,7 +10,6 @@ bot = telebot.TeleBot(config.token)
 server = Flask(__name__)
 a=["Привет, смертный","Как дела, человечишка","Чем занимаешься", "Круто, хорошего дня"]
 b=["Привет, бот", "Хорошо", "Пишу код для тебя", "Пока"]
-i=0
 
 @bot.message_handler(commands=['start'])
 def start(message):
@@ -37,12 +36,14 @@ def dialog(message):
     # Эти параметры для клавиатуры необязательны, просто для удобства
     global a
     global b
+    i=0
     if(i<=len(a)):
 	    keyboard = types.ReplyKeyboardMarkup(row_width=1, resize_keyboard=True)
 	    button_phone = types.KeyboardButton(text=a[i])
 	    keyboard.add(button_phone)
 	    bot.send_message(message.chat.id, b[i], reply_markup=keyboard)
 	    i+=1
+
 
 server.run(host="0.0.0.0", port=os.environ.get('PORT', 5000))
 
