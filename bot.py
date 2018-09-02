@@ -44,7 +44,7 @@ def dialog(message):
 	    keyboard.add(button_phone)
 	    bot.send_message(message.chat.id, a[i], reply_markup=keyboard)
 	    if i==len(a):
-	    	bot.sendMessage(message.chat.id, reply_markup=telegram.ReplyKeyboardRemove())
+	    	bot.sendMessage(message.chat.id, reply_markup=telegram.ReplyKeyboardRemove(remove_keyboard=True))
 	    i+=1
 
 
