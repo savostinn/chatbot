@@ -1,5 +1,5 @@
 import time
-import telebot
+import telebot, types
 import config
 from flask import Flask, request
 import os
@@ -29,6 +29,9 @@ def webhook():
     return "!", 200
 
 server.run(host="0.0.0.0", port=os.environ.get('PORT', 5000))
+source_markup = types.ReplyKeyboardMarkup(row_width=1, resize_keyboard=True)
+source_markup_btn1 = types.KeyboardButton('Всё подряд')
+source_markup.add(source_markup_btn1)
  #   bot.set_webhook(url="https://chatbot0939.herokuapp.com/"+config.token)
 #if __name__ == '__main__':
    # bot.polling(none_stop=True)
