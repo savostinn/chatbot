@@ -28,11 +28,14 @@ def webhook():
     bot.set_webhook(url="https://chatbot0939.herokuapp.com/"+config.token)
     return "!", 200
 
-@bot.message_handler(func=lambda message: True, content_types=["text"])
-def default_test(message):
-    keyboard = types.ReplyKeyboardMarkup()
-    url_button = types.KeyboardButton(text="Перейти на Яндекс")
-    keyboard.add(url_button)
+@bot.message_handler(commands=["geophone"])
+def geophone(message):
+    # Эти параметры для клавиатуры необязательны, просто для удобства
+    keyboard = types.ReplyKeyboardMarkup(row_width=1, resize_keyboard=True)
+    button_phone = types.KeyboardButton(text="Отправить номер телефона")
+    button_geo = types.KeyboardButton(text="Отправить местоположение")
+    keyboard.add(button_phone, button_geo)
+    bot.send_message(message.chat.id, "Отправь мне свой номер телефона или поделись местоположением, жалкий человечишка!", reply_markup=keyboard)
 
 server.run(host="0.0.0.0", port=os.environ.get('PORT', 5000))
 
