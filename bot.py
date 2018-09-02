@@ -1,5 +1,6 @@
 import time
-import telebot, types
+import telebot
+from telebot import types
 import config
 from flask import Flask, request
 import os
