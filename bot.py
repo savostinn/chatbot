@@ -11,9 +11,10 @@ server = Flask(__name__)
 a=["Привет, смертный","Как дела, человечишка","Чем занимаешься", "Круто, хорошего дня"]
 b=["Привет, бот", "Хорошо", "Пишу код для тебя", "Пока"]
 i=0
-#@bot.message_handler(commands=['start'])
-#def start(message):
-#    bot.reply_to(message, 'Hello, ' + message.from_user.first_name)
+
+@bot.message_handler(commands=['start'])
+def start(message):
+    bot.reply_to(message, 'Hello, ' + message.from_user.first_name)
 
 #@bot.message_handler(func=lambda message: True, content_types=['text'])
 #def echo_message(message):
@@ -31,8 +32,7 @@ def webhook():
     bot.set_webhook(url="https://chatbot0939.herokuapp.com/"+config.token)
     return "!", 200
 
-#@bot.message_handler(content_types=['text'])
-@bot.message_handler(commands=['start'])
+@bot.message_handler(content_types=['text'])
 def dialog(message):
     # Эти параметры для клавиатуры необязательны, просто для удобства
     global a
@@ -44,7 +44,7 @@ def dialog(message):
 	    keyboard.add(button_phone)
 	    bot.send_message(message.chat.id, a[i], reply_markup=keyboard)
 	    if i==len(a):
-	    	keyboard.removeKeyboard(True)
+	    	bot.sendMessage(message.chat.id, reply_markup=telegram.ReplyKeyboardRemove())
 	    i+=1
 
 
