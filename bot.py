@@ -42,6 +42,7 @@ def dialog(message):
     global a
     global b
     i = utils.get_i(message.chat.id)
+    bot.send_message(message.chat.id, "0i=" + str(i))
     if i <= len(a):
         keyboard = types.ReplyKeyboardMarkup(row_width=1, resize_keyboard=True)
         button_phone = types.KeyboardButton(text=b[i])
@@ -49,7 +50,8 @@ def dialog(message):
         bot.send_message(message.chat.id, a[i], reply_markup=keyboard)
         bot.send_message(message.chat.id, "1i="+str(i))
         if i == len(a):
-            remove = types.ReplyKeyboardRemove()
+            bot.send_message(message.chat.id, "i=len")
+            remove = types.ReplyKeyboardRemove(selective=True)
             bot.send_message(message.chat.id, reply_markup=remove)
             i = 0
         else:
