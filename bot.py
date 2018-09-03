@@ -49,10 +49,9 @@ def dialog(message):
         bot.send_message(message.chat.id, a[i], reply_markup=keyboard)
         i += 1
     elif i == len(a):
-        print("i1=" + str(i))
         i = 0
         remove = types.ReplyKeyboardRemove(selective=True)
-        bot.send_message(message.chat.id, reply_markup=remove)
+        bot.send_message(message.chat.id, text="Конец :)", reply_markup=remove)
     utils.set_i(message.chat.id, i)
 
 
