@@ -47,6 +47,7 @@ def dialog(message):
         button_phone = types.KeyboardButton(text=b[i])
         keyboard.add(button_phone)
         bot.send_message(message.chat.id, a[i], reply_markup=keyboard)
+        bot.send_message(message.chat.id, "1i="+str(i))
         if i == len(a):
             remove = types.ReplyKeyboardRemove()
             bot.send_message(message.chat.id, reply_markup=remove)
@@ -54,6 +55,7 @@ def dialog(message):
         else:
             i += 1
         utils.set_i(message.chat.id, i)
+        bot.send_message(message.chat.id, "2i=" + str(i))
 
 
 server.run(host="0.0.0.0", port=os.environ.get('PORT', 5000))
