@@ -48,6 +48,7 @@ def dialog(message):
         keyboard.add(button_phone)
         bot.send_message(message.chat.id, a[i], reply_markup=keyboard)
         if i == len(a):
+            bot.send_message(message.chat.id, "len =i")
             #remove = types.ReplyKeyboardRemove(selective=True)
             #bot.send_message(message.chat.id, reply_markup=remove)
             i = 0
