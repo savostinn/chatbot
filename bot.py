@@ -53,9 +53,10 @@ def dialog(message):
             #remove = types.ReplyKeyboardRemove(selective=True)
             #bot.send_message(message.chat.id, reply_markup=remove)
             i = 0
-        else:
+        elif i < len(a):
             print("i2=" + str(i))
             i += 1
+        print("i3=" + str(i))
         utils.set_i(message.chat.id, i)
 
 
