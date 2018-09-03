@@ -9,7 +9,7 @@ import utils
 bot = telebot.TeleBot(config.token)
 
 server = Flask(__name__)
-a = ["Привет, смертный", "Как дела, человечишка","Чем занимаешься", "Круто, хорошего дня"]
+a = ["Привет, смертный", "Как дела, человечишка", "Чем занимаешься", "Круто, хорошего дня"]
 b = ["Привет, бот", "Хорошо", "Пишу код для тебя", "Пока"]
 
 
@@ -43,7 +43,9 @@ def dialog(message):
     global b
     i = utils.get_i(message.chat.id)
     bot.send_message(message.chat.id, "0i=" + str(i))
+    bot.send_message(message.chat.id, "len=" + str(len(a)))
     if i <= len(a):
+        bot.send_message(message.chat.id, "<=")
         keyboard = types.ReplyKeyboardMarkup(row_width=1, resize_keyboard=True)
         button_phone = types.KeyboardButton(text=b[i])
         keyboard.add(button_phone)
