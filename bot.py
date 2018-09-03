@@ -42,22 +42,18 @@ def dialog(message):
     global a
     global b
     i = utils.get_i(message.chat.id)
-    print("i0="+str(i))
-    if i <= len(a):
+    if i < len(a):
         keyboard = types.ReplyKeyboardMarkup(row_width=1, resize_keyboard=True)
         button_phone = types.KeyboardButton(text=b[i])
         keyboard.add(button_phone)
         bot.send_message(message.chat.id, a[i], reply_markup=keyboard)
-        if i == len(a):
-            print("i1=" + str(i))
-            #remove = types.ReplyKeyboardRemove(selective=True)
-            #bot.send_message(message.chat.id, reply_markup=remove)
-            i = 0
-        elif i < len(a):
-            print("i2=" + str(i))
-            i += 1
-        print("i3=" + str(i))
-        utils.set_i(message.chat.id, i)
+        i += 1
+    elif i == len(a):
+        print("i1=" + str(i))
+        i = 0
+        remove = types.ReplyKeyboardRemove(selective=True)
+        bot.send_message(message.chat.id, reply_markup=remove)
+    utils.set_i(message.chat.id, i)
 
 
 server.run(host="0.0.0.0", port=os.environ.get('PORT', 5000))
